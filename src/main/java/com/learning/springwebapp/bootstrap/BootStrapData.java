@@ -36,11 +36,21 @@ public class BootStrapData implements CommandLineRunner {
         uzumaki.getAuthors().add(ito);
 
         Publisher viz = new Publisher("Viz","220 STE","Miami","Florida","33012");
+        this.publisherRepository.save(viz);
+
 
         // Save objects into the repository
         this.authorRepository.save(lovecraft);
         this.authorRepository.save(ito);
+
+        dagon.setPublisher(viz);
+        uzumaki.setPublisher(viz);
         this.bookRepository.save(dagon);
+        this.publisherRepository.save(viz);
+
+        viz.getBooks().add(dagon);
+        viz.getBooks().add(uzumaki);
+
         this.bookRepository.save(uzumaki);
         this.publisherRepository.save(viz);
 
